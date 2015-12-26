@@ -6,7 +6,7 @@
 #include <warden>
 #include <basecomm>
 
-Handle Type = INVALID_HANDLE;
+Handle h_Type = INVALID_HANDLE;
 
 bool hint = true;
 
@@ -17,12 +17,12 @@ public Plugin:myinfo = {
 	url = "cmgportal.cz"
 };
 
-public void OnPluginStart();
+public void OnPluginStart()
 {
-	Type = CreateConVar("jbbqp_notify_type", "1", "Notification type: 1 = notifiy muted client when he tries speak, 2 = notifiy all clients when warden speaks");
+	h_Type = CreateConVar("jbbqp_notify_type", "1", "Notification type: 1 = notifiy muted client when he tries speak, 2 = notifiy all clients when warden speaks");
 }
- GetConVarInt(Type);
-//When speak Warden..
+
+//When Warden speaks or muted client wants to speak
 public bool OnClientSpeakingEx(client)
 {
     if (warden_iswarden(client))
@@ -33,7 +33,7 @@ public bool OnClientSpeakingEx(client)
             {
                 if (GetClientTeam(i) == CS_TEAM_T)
                 {
-					if (GetConVarInt(Type) == 2)
+					if (GetConVarInt(h_Type) == 2)
 						PrintCenterText(i, "Warden speaks, you have been muted.");
 				
                     SetClientListeningFlags(i, VOICE_MUTED);
@@ -45,7 +45,7 @@ public bool OnClientSpeakingEx(client)
             }
         }
     }
-	if (GetConVarInt(Type) == 1)
+	if (GetConVarInt(h_Type) == 1)
 	{
 		if (hint && GetClientListeningFlags(client) == VOICE_MUTED)
 		{
@@ -55,7 +55,7 @@ public bool OnClientSpeakingEx(client)
 	}
 }
  
-//When stop speak Warden..
+// When client stops ta
 public OnClientSpeakingEnd(client)
 {  
     for (int i = 1; i <= MaxClients; i++)
@@ -68,7 +68,7 @@ public OnClientSpeakingEnd(client)
             }
         }
     }
-	if (GetConVarInt(Type) == 1)
+	if (GetConVarInt(h_Type) == 1)
 	{
 		if (warden_iswarden(client))
 		{
