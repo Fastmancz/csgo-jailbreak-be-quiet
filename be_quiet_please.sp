@@ -45,7 +45,7 @@ public bool OnClientSpeakingEx(client)
             }
         }
     }
-	if (GetConVarInt(Type) == 1)
+	if (GetConVarInt(h_Type) == 1)
 	{
 		if (hint && GetClientListeningFlags(client) == VOICE_MUTED)
 		{
@@ -68,7 +68,7 @@ public OnClientSpeakingEnd(client)
             }
         }
     }
-	if (GetConVarInt(Type) == 1)
+	if (GetConVarInt(h_Type) == 1)
 	{
 		if (warden_iswarden(client))
 		{
