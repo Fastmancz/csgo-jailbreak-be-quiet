@@ -62,7 +62,7 @@ public OnClientSpeakingEnd(client)
 	{
 		if(IsClientInGame(i))
 		{
-			if (GetClientTeam(i) == CS_TEAM_T && !BaseComm_IsClientMuted(client))
+			if (GetClientTeam(i) == CS_TEAM_T && !BaseComm_IsClientMuted(i) && IsPlayerAlive(i))
 			{
 				SetClientListeningFlags(i, VOICE_NORMAL);
 			}
