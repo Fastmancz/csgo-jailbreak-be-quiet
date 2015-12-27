@@ -1,4 +1,5 @@
 # JailBreak - Be quiet, please!
+https://forums.alliedmods.net/showthread.php?t=276696
 
 **Descriptions:**
 This is a simple plugin functioning on the basis of VoiceannounceEX & Jailbreak Warden. When speak Warden, then terrorists are silent. Silent ignore admins.
