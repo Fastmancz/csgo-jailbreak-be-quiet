@@ -20,6 +20,7 @@ public Plugin:myinfo = {
 public OnPluginStart()
 {
 	h_Type = CreateConVar("notify_type", "1", "Notification type: 1 = notifiy muted client when he tries speak, 2 = notifiy all clients when warden speaks");
+	LoadTranslations("be_quiet_please.phrases");
 }
 
 //When Warden speaks or muted client wants to speak
@@ -34,7 +35,7 @@ public bool OnClientSpeakingEx(client)
 				if (GetClientTeam(i) == CS_TEAM_T)
 				{
 					if (GetConVarInt(h_Type) == 2)
-					PrintCenterText(i, "Warden speaks, you have been muted.");
+					PrintCenterText(i, "%t", "notification");
 					SetClientListeningFlags(i, VOICE_MUTED);
 					if (GetUserAdmin(i) != INVALID_ADMIN_ID)
 					{
@@ -48,7 +49,7 @@ public bool OnClientSpeakingEx(client)
 	{
 		if (hint && GetClientListeningFlags(client) == VOICE_MUTED)
 		{
-			PrintCenterText(client, "Warden speaks, you have been muted.");
+			PrintCenterText(client, "%t", "notification");
 			hint = false;
 		}
 	}

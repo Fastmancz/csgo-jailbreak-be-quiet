@@ -1,0 +1,7 @@
+﻿"Phrases"
+{
+	"notification"
+	{
+		"en"		"Warden speaks, you have been muted."
+	}
+}
