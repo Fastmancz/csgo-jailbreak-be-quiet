@@ -37,7 +37,7 @@ public bool OnClientSpeakingEx(client)
 					if (GetConVarInt(h_Type) == 2)
 					PrintCenterText(i, "%t", "notification");
 					SetClientListeningFlags(i, VOICE_MUTED);
-					if (GetUserAdmin(i) != INVALID_ADMIN_ID)
+					if (GetAdminFlag(GetUserAdmin(i), Admin_Ban) && !BaseComm_IsClientMuted(i))
 					{
 						SetClientListeningFlags(i, VOICE_NORMAL);
 					}
